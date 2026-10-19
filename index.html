@@ -78,6 +78,8 @@ footer{background:var(--sky1);color:#cdd5ee;padding:32px 20px calc(32px + env(sa
 footer .in{display:grid;gap:10px}
 footer b{font-family:Fredoka,"Trebuchet MS",sans-serif;font-weight:600;font-size:20px;color:#fff}
 footer p{margin:0;max-width:78ch;color:#a9b4d4}
+footer a{color:#ffd08a;text-decoration:underline;text-underline-offset:3px}
+footer a:focus-visible{outline:2px solid #ffd08a;outline-offset:3px}
 .b{display:grid;grid-template-columns:120px 1fr 92px;gap:10px;align-items:center;border:0;background:none;color:var(--txt);font:inherit;font-size:14px;text-align:left;padding:3px 6px;border-radius:8px;cursor:pointer}
 .b:hover{background:var(--field)}
 .b .t{height:12px;border-radius:6px;background:var(--chip);overflow:hidden}
@@ -216,7 +218,7 @@ footer p{margin:0;max-width:78ch;color:#a9b4d4}
 
 <p class="note">Ankara satış m² fiyatları Eylül 2026 ilan bazlı piyasa verisine dayanır; Çankaya mahalleleri doğrudan, diğer ilçelerde mahalle farkları ilçe ortalamasına göre ölçeklenmiştir. İlan fiyatı gerçekleşen satış fiyatı değildir ve az ilanlı mahallelerde sapma olabilir. Kira değerleri bölgenin amortisman süresinden türetilmiştir. Diğer iller örnek veridir. Karar vermeden önce ekspertiz veya tapu verisiyle doğrulayın. Cephe, kat, banyo, ebeveyn banyosu gibi özellik katsayıları kaynak veri değil, ayarlanabilir varsayımdır.</p>
 </main>
-<footer><div class="in"><b>Emlakcım</b><p>Ankara’da mahalle bazlı konut değer ve kira tahmini. Emlakcım’ın sunduğu bilgiler bilgilendirme amaçlıdır; resmi değerleme raporu, yatırım ya da hukuki tavsiye değildir.</p><p>© 2026 Emlakcım</p></div></footer>
+<footer><div class="in"><b>Emlakcım</b><p>Ankara’da mahalle bazlı konut değer ve kira tahmini. Emlakcım’ın sunduğu bilgiler bilgilendirme amaçlıdır; resmi değerleme raporu, yatırım ya da hukuki tavsiye değildir.</p><p>İletişim: <a href="mailto:uzunerhlt@gmail.com">uzunerhlt@gmail.com</a></p><p>© 2026 Emlakcım</p></div></footer>
 
 <script>
 // Örnek veri: [satış bin ₺/m², aylık kira ₺/m²]
