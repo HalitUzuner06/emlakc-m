@@ -97,6 +97,23 @@ footer a:focus-visible{outline:2px solid #ffd08a;outline-offset:3px}
 .tbl tr.on td{background:rgba(61,209,201,.16);font-weight:700;color:#fff}
 @media(min-width:861px){.res{max-height:calc(100vh - 24px);overflow:auto}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.share{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid #26305a}
+.share button{border:1px solid #3b4688;background:rgba(255,255,255,.08);color:#eef1fb;border-radius:8px;padding:9px 13px;font:inherit;font-weight:600;font-size:14px;cursor:pointer}
+.share button:hover{background:rgba(255,255,255,.16)}
+.share button.go{background:#ffd08a;border-color:#ffd08a;color:#1a1f3a;font-weight:700}
+.lead{display:grid;grid-template-columns:.9fr 1.1fr;gap:32px;align-items:start}
+@media(max-width:860px){.lead{grid-template-columns:1fr}}
+.lead h2{font-family:"Bricolage Grotesque",sans-serif;font-size:26px;line-height:1.15;margin:0 0 10px;letter-spacing:-.01em}
+.lead .ld{margin:0;color:var(--mute)}
+.lsum{margin-top:16px;padding:12px 14px;border-left:4px solid var(--acc);background:var(--chip);border-radius:0 8px 8px 0;font-size:14px;font-weight:600}
+.lead textarea{width:100%;font:inherit;color:var(--txt);background:var(--field);border:1px solid var(--line);border-radius:8px;padding:11px 12px;resize:vertical}
+.lead textarea:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.chk{display:flex!important;gap:9px;align-items:flex-start;font-size:13px;margin-top:14px}
+.chk input{width:auto;margin-top:3px;accent-color:var(--acc2)}
+.cta2{width:100%;margin-top:16px;border:0;border-radius:10px;padding:14px;background:var(--acc2);color:var(--card);font:inherit;font-weight:800;font-size:16px;cursor:pointer}
+.cta2:hover{filter:brightness(1.1)}
+.lnote{margin-top:10px;font-size:14px;font-weight:600;min-height:20px}
+@media print{.hero,.card:not(.res),footer,.note,.share{display:none!important}main{margin-top:0}.work{display:block}.res{position:static;background:#fff!important;box-shadow:none;border:0}.res,.res *{color:#111!important}.bar,.pin{display:none}}
 </style>
 </head>
 <body>
@@ -197,6 +214,26 @@ footer a:focus-visible{outline:2px solid #ffd08a;outline-offset:3px}
 
 <section class="card cmp" id="cmp" aria-label="İlçe karşılaştırması"></section>
 
+<section class="card lead" id="lead" aria-label="Danışmanla iletişim">
+  <div>
+    <h2>Evini satmak ya da kiralamak mı istiyorsun?</h2>
+    <p class="ld">Bilgilerini bırak, seninle iletişime geçeyim. Hesapladığın evin özeti mesaja otomatik eklenir.</p>
+    <div class="lsum" id="lSum"></div>
+  </div>
+  <div>
+    <div class="row">
+      <div><label for="lName">Ad soyad</label><input id="lName" type="text" autocomplete="name"></div>
+      <div><label for="lTel">Telefon</label><input id="lTel" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xx xxx xx xx"></div>
+    </div>
+    <label for="lType">Talebin</label>
+    <select id="lType"><option>Evimi satmak istiyorum</option><option>Evimi kiralamak istiyorum</option><option>Ev almak istiyorum</option><option>Ev kiralamak istiyorum</option><option>Sadece değer bilgisi istiyorum</option></select>
+    <label for="lMsg">Not (isteğe bağlı)</label><textarea id="lMsg" rows="3"></textarea>
+    <input id="lHp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+    <label class="chk"><input type="checkbox" id="lOk">İletişim bilgilerimin benimle iletişime geçmek amacıyla kullanılmasını kabul ediyorum.</label>
+    <button class="cta2" id="lSend" type="button">Bilgilerimi gönder</button>
+    <div class="lnote" id="lNote" aria-live="polite"></div>
+  </div>
+</section>
 <section class="card info" aria-label="Nasıl hesaplıyoruz">
   <div>
     <h2>Nasıl hesaplıyoruz?</h2>
@@ -212,7 +249,7 @@ footer a:focus-visible{outline:2px solid #ffd08a;outline-offset:3px}
     <details><summary>Fiyatlar ne kadar güncel?</summary><p>Ankara verileri Eylül 2026 tarihli ilan fiyatlarına dayanır. İlan fiyatı gerçekleşen satış fiyatı değildir, pazarlık sonunda genelde daha düşük bir tutara anlaşılır.</p></details>
     <details><summary>Mahallemi bulamıyorum, neden?</summary><p>Şimdilik Ankara’da seçili mahalleler var. Çankaya en ayrıntılı ilçemiz. Diğer ilçeleri ve mahalleleri genişletmeye devam ediyoruz.</p></details>
     <details><summary>Başka iller için de hesap yapabilir miyim?</summary><p>İstanbul, İzmir, Bursa ve Antalya örnek veriyle çalışır ve doğrulanmamıştır. Sonuç kartında bu açıkça belirtilir.</p></details>
-    <details><summary>Girdiğim bilgiler kaydediliyor mu?</summary><p>Hayır. Hesaplama tarayıcınızda yapılır, girdiğiniz bilgiler bir sunucuya gönderilmez.</p></details>
+    <details><summary>Girdiğim bilgiler kaydediliyor mu?</summary><p>Hesaplama tarayıcınızda yapılır, girdiğiniz değerler bir sunucuya gönderilmez. Yalnızca “Bilgilerimi gönder” formunu doldurursanız ad, telefon ve ev özeti bana ulaşır.</p></details>
   </div>
 </section>
 
@@ -344,7 +381,7 @@ function render(){
   h+=`<h3 class="tt">Bina yaşına göre, ${r.m2} m²${sf}</h3><table class="tbl"><tbody>`+AG.map(([n,v])=>{const p=fa(r.m2,v);return `<tr class="${v===ageV?"on":""}"><td>${n}</td><td>${sh(p*.92)} – ${sh(p*1.08)}</td></tr>`}).join("")+`</tbody></table>`;
   h+="</details>";
   $("out").innerHTML=h;
-  anim($("big"),r.mid,u);
+  anim($("big"),r.mid,u);afterRender(r,u);
   // İlçe karşılaştırma grafiği
   const rows=Object.entries(r.d).sort((a,b)=>b[1][r.idx]-a[1][r.idx]),mx=rows[0][1][r.idx];
   $("cmp").innerHTML=`<h2>${$("dist").value} mahalleleri</h2><p>${rent?"Aylık kira, m² başına":"Satış fiyatı, m² başına"}. Bir mahalleye dokunarak hesabı onun için güncelle.</p><div class="bars">`+
@@ -354,7 +391,69 @@ $("cmp").addEventListener("click",e=>{const b=e.target.closest("[data-h]");if(!b
 document.querySelector("main").addEventListener("input",render);
 document.querySelector("main").addEventListener("change",render);
 
-fillCity();sync();
+// ---- İletişim formu ayarları ----
+// Formspree'de form oluşturup adresini buraya yaz (örn. "https://formspree.io/f/abcdwxyz"). Boş bırakırsan e-posta uygulaması açılır.
+const LEAD_ENDPOINT="";
+const LEAD_MAIL="uzunerhlt@gmail.com";
+
+// ---- Sonucu paylaşma ----
+const SHARE_IDS=["m2","rooms","age","floor","heat","ask","tot","net","bath","park","view","cond","deed","use"];
+const cbs=()=>[...document.querySelectorAll("main input[type=checkbox]")].filter(x=>x.id!=="lOk");
+function shareURL(){
+  const q=new URLSearchParams();
+  q.set("r",st.role);q.set("m",st.mode);
+  ["city","dist","hood",...SHARE_IDS].forEach(id=>{if($(id).value!=="")q.set(id,$(id).value)});
+  q.set("c",cbs().map(x=>x.checked?1:0).join(""));
+  return location.href.split("#")[0].split("?")[0]+"?"+q.toString()}
+function loadShare(){
+  const q=new URLSearchParams(location.search);if(!q.get("c"))return;
+  st.role=q.get("r")==="seeker"?"seeker":"owner";st.mode=q.get("m")==="rent"?"rent":"sale";
+  [["role","role"],["mode","mode"]].forEach(([id,k])=>$(id).querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===st[k])));
+  if(q.has("city"))$("city").value=q.get("city");fillDist();
+  if(q.has("dist"))$("dist").value=q.get("dist");fillHood();
+  if(q.has("hood"))$("hood").value=q.get("hood");
+  SHARE_IDS.forEach(id=>{if(q.has(id))$(id).value=q.get(id)});
+  const c=q.get("c");cbs().forEach((x,i)=>{x.checked=c[i]==="1"})}
+function afterRender(r,u){
+  $("lSum").textContent="Seçili ev: "+$("hood").value+", "+$("dist").value+" · "+r.m2+" m² · "+r.rooms+" · tahmin ≈ "+tl(r.mid)+u;
+  $("out").insertAdjacentHTML("beforeend",'<div class="share"><button type="button" class="go" data-a="lead">Danışmanla görüş</button><button type="button" data-a="copy">Bağlantıyı kopyala</button><button type="button" data-a="wa">WhatsApp’ta paylaş</button><button type="button" data-a="print">PDF / Yazdır</button></div>')}
+$("out").addEventListener("click",async e=>{
+  const b=e.target.closest("[data-a]");if(!b)return;
+  const a=b.dataset.a,r=calc(),u=st.mode==="rent"?" /ay":"";
+  if(a==="lead"){$("lead").scrollIntoView({behavior:"smooth"});$("lName").focus({preventScroll:true})}
+  else if(a==="print")window.print();
+  else if(a==="wa"){
+    const t="Emlakcım tahmini: "+$("hood").value+", "+$("dist").value+" – "+r.m2+" m² "+(st.mode==="rent"?"kiralık":"satılık")+" ≈ "+tl(r.mid)+u+"\n"+shareURL();
+    window.open("https://wa.me/?text="+encodeURIComponent(t),"_blank","noopener")}
+  else if(a==="copy"){
+    const url=shareURL(),old=b.textContent;
+    try{await navigator.clipboard.writeText(url);b.textContent="Kopyalandı ✓";setTimeout(()=>{b.textContent=old},1800)}
+    catch(_){prompt("Bağlantıyı kopyala:",url)}}
+});
+["input","change"].forEach(t=>$("lead").addEventListener(t,e=>e.stopPropagation()));
+$("lSend").addEventListener("click",async()=>{
+  const g=id=>$(id).value.trim(),n=$("lNote");
+  if($("lHp").value)return;
+  if(!g("lName")||!g("lTel")){n.textContent="Lütfen adını ve telefon numaranı yaz.";return}
+  if(!$("lOk").checked){n.textContent="Devam etmek için onay kutusunu işaretle.";return}
+  const r=calc(),u=st.mode==="rent"?" /ay":"";
+  const home=$("hood").value+", "+$("dist").value+", "+$("city").value+" · "+r.m2+" m² · "+r.rooms+" · bina yaşı "+$("age").selectedOptions[0].text+" · tahmin ≈ "+tl(r.mid)+u;
+  const data={name:g("lName"),phone:g("lTel"),topic:g("lType"),note:g("lMsg"),home:home,link:shareURL()};
+  if(LEAD_ENDPOINT){
+    n.textContent="Gönderiliyor…";
+    try{
+      const res=await fetch(LEAD_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(data)});
+      if(!res.ok)throw new Error("x");
+      n.textContent="Teşekkürler! Bilgilerin bana ulaştı, en kısa sürede dönüş yapacağım.";
+      ["lName","lTel","lMsg"].forEach(i=>{$(i).value=""});$("lOk").checked=false}
+    catch(_){n.textContent="Gönderilemedi. Lütfen şu adrese yaz: "+LEAD_MAIL}
+  }else{
+    const body=["Ad: "+data.name,"Telefon: "+data.phone,"Talep: "+data.topic,"Ev: "+data.home,"Not: "+data.note,"Bağlantı: "+data.link].join("\n");
+    location.href="mailto:"+LEAD_MAIL+"?subject="+encodeURIComponent("Emlakcım – "+data.topic)+"&body="+encodeURIComponent(body);
+    n.textContent="E-posta uygulaman açılıyor…"}
+});
+
+fillCity();loadShare();sync();
 const hoods=Object.values(DATA).reduce((a,c)=>a+Object.values(c).reduce((b,d)=>b+Object.keys(d).length,0),0);
 $("s1").textContent=Object.values(DATA.Ankara).reduce((a,d)=>a+Object.keys(d).length,0);$("s2").textContent=Object.keys(DATA.Ankara).length;
 render();
